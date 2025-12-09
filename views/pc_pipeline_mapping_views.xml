@@ -1,5 +1,5 @@
-<!-- prospectconnect_sync/views/pc_pipeline_mapping_views.xml -->
 <?xml version="1.0" encoding="utf-8"?>
+<!-- prospectconnect_sync/views/pc_pipeline_mapping_views.xml -->
 <odoo>
     <record id="view_pc_pipeline_mapping_tree" model="ir.ui.view">
         <field name="name">pc.pipeline.mapping.tree</field>

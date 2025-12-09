@@ -1,5 +1,5 @@
-<!-- prospectconnect_sync/views/pc_menus.xml -->
 <?xml version="1.0" encoding="utf-8"?>
+<!-- prospectconnect_sync/views/pc_menus.xml -->
 <odoo>
     
     <!-- User Mapping Views -->
