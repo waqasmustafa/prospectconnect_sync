@@ -32,7 +32,7 @@ class PcPipelineMapping(models.Model):
     def fetch_from_api(self):
         """Fetch pipelines/stages from ProspectConnect.
 
-        Stub implementation – update endpoint/field names once known from docs.
+        Endpoint verified: POST /deal/pipelines
         """
         if not requests:
             raise UserError(_("Python 'requests' library not available."))
@@ -44,22 +44,24 @@ class PcPipelineMapping(models.Model):
         if not api_key:
             raise UserError(_("Please configure API key in settings first."))
 
-        # TODO: replace with real pipelines/stages endpoint
+        # Endpoint verified from docs: POST /deal/pipelines
         url = base_url.rstrip("/") + "/deal/pipelines"
         headers = {
             "Accept": "application/json",
             "Authorization": api_key,
+            "Content-Type": "application/json",
         }
 
         try:
-            resp = requests.get(url, headers=headers, timeout=20)
+            # Documentation says "Get Pipelines" is a POST request
+            resp = requests.post(url, headers=headers, json={}, timeout=20)
             resp.raise_for_status()
             data = resp.json()
-        except Exception as e:  # pragma: no cover
+        except Exception as e:
             _logger.exception("Error fetching ProspectConnect pipelines")
             raise UserError(_("Error fetching pipelines from ProspectConnect: %s") % e)
 
-        # Expected flexible structure, adapt once you know exact API.
+        # Expected structure: {"data": [{"id": "...", "stages": [...]}]}
         pipelines = data.get("data") or []
         for pipeline in pipelines:
             pipeline_id = pipeline.get("id")

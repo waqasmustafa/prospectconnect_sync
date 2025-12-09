@@ -133,7 +133,7 @@ class PcSyncJob(models.Model):
         if not partner:
             return
 
-        url = base_url + "/contact/upsert"
+        url = base_url + "/contact/addOrUpdateContact"
 
         country = partner.country_id
         
@@ -199,7 +199,7 @@ class PcSyncJob(models.Model):
         # Determine if update or create
         if lead.pc_deal_id:
             # Update existing deal
-            url = base_url + "/deal/update"
+            url = base_url + "/deal/updateDeal"
             payload = {
                 "dealId": lead.pc_deal_id,
                 "name": lead.name or "",
@@ -208,7 +208,7 @@ class PcSyncJob(models.Model):
             }
         else:
             # Create new deal
-            url = base_url + "/deal/create"
+            url = base_url + "/deal/addDeal"
             payload = {
                 "name": lead.name or "",
                 "value": float(lead.expected_revenue or 0.0),
@@ -271,7 +271,7 @@ class PcSyncJob(models.Model):
 
         if task_id:
             # Update existing task
-            url = base_url + "/task/updateTaskById"
+            url = base_url + "/task/updateTask"
             payload = {
                 "taskId": task_id,
                 "name": activity.summary or "Task",
@@ -281,7 +281,7 @@ class PcSyncJob(models.Model):
             }
         else:
             # Create new task
-            url = base_url + "/task/addTask"
+            url = base_url + "/task/createTask"
             payload = {
                 "name": activity.summary or "Task",
                 "priority": "medium",
@@ -338,7 +338,7 @@ class PcSyncJob(models.Model):
             return
 
         # Create note (assuming notes are always created, not updated)
-        url = base_url + "/note/create"
+        url = base_url + "/note/createNote"
         payload = {
             "body": message.body or "",
             "userId": message.author_id.id if message.author_id else None,

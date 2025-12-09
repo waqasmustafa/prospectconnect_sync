@@ -138,14 +138,14 @@ class PcSyncState(models.Model):
         # Get timestamp for incremental pull
         since = state.last_pull_at or (datetime.now() - timedelta(days=30))
         
-        url = base_url + "/contacts/list"
-        params = {
+        url = base_url + "/contact/getPaginatedContacts"
+        payload = {
             "updatedAfter": since.isoformat(),
             "limit": 100,
         }
 
         try:
-            resp = requests.get(url, headers=headers, params=params, timeout=30)
+            resp = requests.post(url, headers=headers, json=payload, timeout=30)
             resp.raise_for_status()
             data = resp.json()
             contacts = data.get("data", []) or data.get("contacts", [])
@@ -245,14 +245,14 @@ class PcSyncState(models.Model):
 
         since = state.last_pull_at or (datetime.now() - timedelta(days=30))
         
-        url = base_url + "/deals/list"
-        params = {
+        url = base_url + "/deal/getDealsByBusinessId"
+        payload = {
             "updatedAfter": since.isoformat(),
             "limit": 100,
         }
 
         try:
-            resp = requests.get(url, headers=headers, params=params, timeout=30)
+            resp = requests.post(url, headers=headers, json=payload, timeout=30)
             resp.raise_for_status()
             data = resp.json()
             deals = data.get("data", []) or data.get("deals", [])
@@ -334,14 +334,14 @@ class PcSyncState(models.Model):
 
         since = state.last_pull_at or (datetime.now() - timedelta(days=30))
         
-        url = base_url + "/tasks/list"
-        params = {
+        url = base_url + "/task/getTasksByBusinessId"
+        payload = {
             "updatedAfter": since.isoformat(),
             "limit": 100,
         }
 
         try:
-            resp = requests.get(url, headers=headers, params=params, timeout=30)
+            resp = requests.post(url, headers=headers, json=payload, timeout=30)
             resp.raise_for_status()
             data = resp.json()
             tasks = data.get("data", []) or data.get("tasks", [])
@@ -428,14 +428,14 @@ class PcSyncState(models.Model):
 
         since = state.last_pull_at or (datetime.now() - timedelta(days=30))
         
-        url = base_url + "/notes/list"
-        params = {
+        url = base_url + "/note/getAllNotes"
+        payload = {
             "updatedAfter": since.isoformat(),
             "limit": 100,
         }
 
         try:
-            resp = requests.get(url, headers=headers, params=params, timeout=30)
+            resp = requests.post(url, headers=headers, json=payload, timeout=30)
             resp.raise_for_status()
             data = resp.json()
             notes = data.get("data", []) or data.get("notes", [])

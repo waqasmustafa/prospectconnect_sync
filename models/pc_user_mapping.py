@@ -50,12 +50,17 @@ class PcUserMapping(models.Model):
         }
 
         try:
+            # TODO: Endpoint /team/listUsers is not documented. 
+            # We suppress the 404 error to prevent UI crash until correct endpoint is found.
             resp = requests.get(url, headers=headers, timeout=20)
+            if resp.status_code == 404:
+                _logger.warning("ProspectConnect 'List Users' endpoint not found (404). Skipping user fetch.")
+                return
             resp.raise_for_status()
             data = resp.json()
-        except Exception as e:  # pragma: no cover
-            _logger.exception("Error fetching ProspectConnect users")
-            raise UserError(_("Error fetching users from ProspectConnect: %s") % e)
+        except Exception as e:
+            _logger.warning("Error fetching ProspectConnect users: %s", e)
+            return
 
         # Expected shape: {"data": [{"id": "...", "name": "...", "email": "..."}]}
         items = data.get("data") or []
