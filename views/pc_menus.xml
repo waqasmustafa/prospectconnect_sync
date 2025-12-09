@@ -7,18 +7,18 @@
         <field name="name">pc.user.mapping.tree</field>
         <field name="model">pc.user.mapping</field>
         <field name="arch" type="xml">
-            <tree string="User Mapping">
+            <list string="User Mapping">
                 <field name="odoo_user_id"/>
                 <field name="pc_user_name"/>
                 <field name="pc_user_id" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
     
     <record id="action_pc_user_mapping" model="ir.actions.act_window">
         <field name="name">User Mapping</field>
         <field name="res_model">pc.user.mapping</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     
     <!-- Pipeline Mapping Views -->
@@ -26,19 +26,19 @@
         <field name="name">pc.pipeline.mapping.tree</field>
         <field name="model">pc.pipeline.mapping</field>
         <field name="arch" type="xml">
-            <tree string="Pipeline Mapping">
+            <list string="Pipeline Mapping">
                 <field name="odoo_stage_id"/>
                 <field name="pc_stage_name"/>
                 <field name="pc_pipeline_id" optional="hide"/>
                 <field name="pc_stage_id" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
     
     <record id="action_pc_pipeline_mapping" model="ir.actions.act_window">
         <field name="name">Pipeline Mapping</field>
         <field name="res_model">pc.pipeline.mapping</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     
     <!-- Sync Job Views -->
@@ -46,7 +46,7 @@
         <field name="name">pc.sync.job.tree</field>
         <field name="model">pc.sync.job</field>
         <field name="arch" type="xml">
-            <tree string="Sync Jobs" decoration-success="status=='done'" 
+            <list string="Sync Jobs" decoration-success="status=='done'" 
                   decoration-danger="status=='failed'" decoration-info="status=='in_progress'">
                 <field name="create_date"/>
                 <field name="direction"/>
@@ -57,7 +57,7 @@
                 <field name="status"/>
                 <field name="retry_count"/>
                 <field name="error_message"/>
-            </tree>
+            </list>
         </field>
     </record>
     
@@ -115,7 +115,7 @@
     <record id="action_pc_sync_job" model="ir.actions.act_window">
         <field name="name">Sync Jobs</field>
         <field name="res_model">pc.sync.job</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'search_default_pending': 1}</field>
     </record>
     

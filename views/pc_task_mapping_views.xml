@@ -6,11 +6,11 @@
         <field name="name">pc.task.type.mapping.tree</field>
         <field name="model">pc.task.type.mapping</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="odoo_activity_type_id"/>
                 <field name="pc_task_type_id"/>
                 <field name="pc_task_type_name"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -35,11 +35,11 @@
         <field name="name">pc.task.status.mapping.tree</field>
         <field name="model">pc.task.status.mapping</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="odoo_state"/>
                 <field name="pc_task_status_id"/>
                 <field name="pc_task_status_name"/>
-            </tree>
+            </list>
         </field>
     </record>
 

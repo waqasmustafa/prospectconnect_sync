@@ -5,11 +5,11 @@
         <field name="name">pc.user.mapping.tree</field>
         <field name="model">pc.user.mapping</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="odoo_user_id"/>
                 <field name="pc_user_id"/>
                 <field name="pc_user_name"/>
-            </tree>
+            </list>
         </field>
     </record>
 

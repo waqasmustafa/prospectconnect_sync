@@ -5,12 +5,12 @@
         <field name="name">pc.pipeline.mapping.tree</field>
         <field name="model">pc.pipeline.mapping</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="odoo_stage_id"/>
                 <field name="pc_stage_id"/>
                 <field name="pc_stage_name"/>
                 <field name="pc_pipeline_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
