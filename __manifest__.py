@@ -50,11 +50,11 @@ Synced Fields:
     "depends": ["base", "contacts", "crm", "mail"],
     "data": [
         "security/ir.model.access.csv",
-        "views/pc_menus.xml",
         "views/pc_settings_view.xml",
         "views/pc_user_mapping_views.xml",
         "views/pc_pipeline_mapping_views.xml",
         "views/pc_task_mapping_views.xml",
+        "views/pc_menus.xml",
         "data/pc_cron_jobs.xml",
     ],
     "installable": True,
