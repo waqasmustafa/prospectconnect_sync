@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pc_user_mapping,access_pc_user_mapping,model_pc_user_mapping,base.group_system,1,1,1,1
+access_pc_pipeline_mapping,access_pc_pipeline_mapping,model_pc_pipeline_mapping,base.group_system,1,1,1,1
+access_pc_task_type_mapping,access_pc_task_type_mapping,model_pc_task_type_mapping,base.group_system,1,1,1,1
+access_pc_task_status_mapping,access_pc_task_status_mapping,model_pc_task_status_mapping,base.group_system,1,1,1,1
+access_pc_sync_state,access_pc_sync_state,model_pc_sync_state,base.group_system,1,1,1,1
+access_pc_sync_job,access_pc_sync_job,model_pc_sync_job,base.group_system,1,1,1,1

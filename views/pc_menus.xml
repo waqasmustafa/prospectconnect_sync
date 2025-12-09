@@ -1,0 +1,158 @@
+<!-- prospectconnect_sync/views/pc_menus.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- User Mapping Views -->
+    <record id="view_pc_user_mapping_tree" model="ir.ui.view">
+        <field name="name">pc.user.mapping.tree</field>
+        <field name="model">pc.user.mapping</field>
+        <field name="arch" type="xml">
+            <tree string="User Mapping">
+                <field name="odoo_user_id"/>
+                <field name="pc_user_name"/>
+                <field name="pc_user_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_pc_user_mapping" model="ir.actions.act_window">
+        <field name="name">User Mapping</field>
+        <field name="res_model">pc.user.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Pipeline Mapping Views -->
+    <record id="view_pc_pipeline_mapping_tree" model="ir.ui.view">
+        <field name="name">pc.pipeline.mapping.tree</field>
+        <field name="model">pc.pipeline.mapping</field>
+        <field name="arch" type="xml">
+            <tree string="Pipeline Mapping">
+                <field name="odoo_stage_id"/>
+                <field name="pc_stage_name"/>
+                <field name="pc_pipeline_id" optional="hide"/>
+                <field name="pc_stage_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_pc_pipeline_mapping" model="ir.actions.act_window">
+        <field name="name">Pipeline Mapping</field>
+        <field name="res_model">pc.pipeline.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Sync Job Views -->
+    <record id="view_pc_sync_job_tree" model="ir.ui.view">
+        <field name="name">pc.sync.job.tree</field>
+        <field name="model">pc.sync.job</field>
+        <field name="arch" type="xml">
+            <tree string="Sync Jobs" decoration-success="status=='done'" 
+                  decoration-danger="status=='failed'" decoration-info="status=='in_progress'">
+                <field name="create_date"/>
+                <field name="direction"/>
+                <field name="object_type"/>
+                <field name="odoo_model"/>
+                <field name="odoo_res_id"/>
+                <field name="pc_id"/>
+                <field name="status"/>
+                <field name="retry_count"/>
+                <field name="error_message"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_pc_sync_job_form" model="ir.ui.view">
+        <field name="name">pc.sync.job.form</field>
+        <field name="model">pc.sync.job</field>
+        <field name="arch" type="xml">
+            <form string="Sync Job">
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="direction"/>
+                            <field name="object_type"/>
+                            <field name="odoo_model"/>
+                            <field name="odoo_res_id"/>
+                        </group>
+                        <group>
+                            <field name="pc_id"/>
+                            <field name="retry_count"/>
+                            <field name="next_retry_at"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                    <group string="Error Details" invisible="not error_message">
+                        <field name="error_message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_pc_sync_job_search" model="ir.ui.view">
+        <field name="name">pc.sync.job.search</field>
+        <field name="model">pc.sync.job</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="direction"/>
+                <field name="object_type"/>
+                <field name="status"/>
+                <filter name="pending" string="Pending" domain="[('status', '=', 'pending')]"/>
+                <filter name="failed" string="Failed" domain="[('status', '=', 'failed')]"/>
+                <filter name="done" string="Done" domain="[('status', '=', 'done')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                    <filter name="group_type" string="Object Type" context="{'group_by': 'object_type'}"/>
+                    <filter name="group_direction" string="Direction" context="{'group_by': 'direction'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="action_pc_sync_job" model="ir.actions.act_window">
+        <field name="name">Sync Jobs</field>
+        <field name="res_model">pc.sync.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+    
+    <!-- Main Menu -->
+    <menuitem id="menu_pc_root" 
+              name="ProspectConnect" 
+              web_icon="prospectconnect_sync,static/description/icon.png"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="menu_pc_config" 
+              name="Configuration" 
+              parent="menu_pc_root" 
+              sequence="100"/>
+    
+    <menuitem id="menu_pc_settings" 
+              name="Settings" 
+              parent="menu_pc_config" 
+              action="action_pc_config_settings" 
+              sequence="1"/>
+    
+    <menuitem id="menu_pc_user_mapping" 
+              name="User Mapping" 
+              parent="menu_pc_config" 
+              action="action_pc_user_mapping" 
+              sequence="2"/>
+    
+    <menuitem id="menu_pc_pipeline_mapping" 
+              name="Pipeline Mapping" 
+              parent="menu_pc_config" 
+              action="action_pc_pipeline_mapping" 
+              sequence="3"/>
+    
+    <!-- Sync Jobs Menu (for monitoring) -->
+    <menuitem id="menu_pc_sync_jobs" 
+              name="Sync Jobs" 
+              parent="menu_pc_root" 
+              action="action_pc_sync_job" 
+              sequence="10"/>
+    
+</odoo>

@@ -1,0 +1,61 @@
+<!-- prospectconnect_sync/views/pc_task_mapping_views.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Task Type Mapping -->
+    <record id="view_pc_task_type_mapping_tree" model="ir.ui.view">
+        <field name="name">pc.task.type.mapping.tree</field>
+        <field name="model">pc.task.type.mapping</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="odoo_activity_type_id"/>
+                <field name="pc_task_type_id"/>
+                <field name="pc_task_type_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pc_task_type_mapping_form" model="ir.ui.view">
+        <field name="name">pc.task.type.mapping.form</field>
+        <field name="model">pc.task.type.mapping</field>
+        <field name="arch" type="xml">
+            <form string="ProspectConnect Task Type Mapping">
+                <sheet>
+                    <group>
+                        <field name="odoo_activity_type_id"/>
+                        <field name="pc_task_type_id"/>
+                        <field name="pc_task_type_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Task Status Mapping -->
+    <record id="view_pc_task_status_mapping_tree" model="ir.ui.view">
+        <field name="name">pc.task.status.mapping.tree</field>
+        <field name="model">pc.task.status.mapping</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="odoo_state"/>
+                <field name="pc_task_status_id"/>
+                <field name="pc_task_status_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pc_task_status_mapping_form" model="ir.ui.view">
+        <field name="name">pc.task.status.mapping.form</field>
+        <field name="model">pc.task.status.mapping</field>
+        <field name="arch" type="xml">
+            <form string="ProspectConnect Task Status Mapping">
+                <sheet>
+                    <group>
+                        <field name="odoo_state"/>
+                        <field name="pc_task_status_id"/>
+                        <field name="pc_task_status_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

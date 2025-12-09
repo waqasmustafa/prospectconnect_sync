@@ -1,0 +1,33 @@
+<!-- prospectconnect_sync/views/pc_pipeline_mapping_views.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pc_pipeline_mapping_tree" model="ir.ui.view">
+        <field name="name">pc.pipeline.mapping.tree</field>
+        <field name="model">pc.pipeline.mapping</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="odoo_stage_id"/>
+                <field name="pc_stage_id"/>
+                <field name="pc_stage_name"/>
+                <field name="pc_pipeline_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pc_pipeline_mapping_form" model="ir.ui.view">
+        <field name="name">pc.pipeline.mapping.form</field>
+        <field name="model">pc.pipeline.mapping</field>
+        <field name="arch" type="xml">
+            <form string="ProspectConnect Pipeline/Stage Mapping">
+                <sheet>
+                    <group>
+                        <field name="odoo_stage_id"/>
+                        <field name="pc_stage_id"/>
+                        <field name="pc_stage_name"/>
+                        <field name="pc_pipeline_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
